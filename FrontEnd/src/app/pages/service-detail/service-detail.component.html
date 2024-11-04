@@ -1,0 +1,37 @@
+<div class="service-detail-container">
+  <h2 class="service-title">{{ serviceDetail.title }}</h2>
+  <img class="service-detail-image" [src]="serviceDetail.image" alt="{{ serviceDetail.title }}">
+  <p class="service-description">{{ serviceDetail.description }}</p>
+  <p class="service-price">Price: {{ serviceDetail.price | currency }}</p>
+
+  <h3>Book this service</h3>
+  <div class="order-form">
+    <label for="serviceDate">Select Date:</label>
+    <input class="date-input" id="serviceDate" type="date" [(ngModel)]="serviceDate">
+
+    <label for="orderQuantity">Quantity:</label>
+    <input class="quantity-input" id="orderQuantity" type="number" [(ngModel)]="orderQuantity" min="1" placeholder="Quantity">
+
+    <button class="order-btn" (click)="placeOrder()">Place Order</button>
+  </div>
+
+  <!-- Reviews Section -->
+  <div class="service-reviews">
+    <h3>Reviews:</h3>
+    <div *ngIf="reviews.length === 0" class="no-reviews">No reviews available for this service.</div>
+    <div *ngFor="let review of visibleReviews" class="review">
+      <p><strong>{{ review.username }}</strong> (Rating: {{ review.rating }}): {{ review.description }}</p>
+      <div class="stars">
+        <span *ngFor="let star of getStars(review.rating)">⭐</span>
+        <span *ngFor="let emptyStar of getEmptyStars(review.rating)">☆</span>
+      </div>
+    </div>
+
+    <!-- "See More" Button -->
+    <div *ngIf="reviews.length > 3" class="see-more">
+      <button (click)="toggleReviews()" class="see-more-btn">
+        {{ showAllReviews ? 'See Less' : 'See More' }}
+      </button>
+    </div>
+  </div>
+</div>
