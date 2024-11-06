@@ -1,6 +1,6 @@
 package com.ust.serviceplatform.service;
 
-import com.ust.serviceplatform.model.User;
+import com.ust.serviceplatform.model.Users;
 import com.ust.serviceplatform.repository.UserRepository;
 /*import org.springframework.security.crypto.password.PasswordEncoder;*/
 import org.springframework.stereotype.Service;
@@ -20,17 +20,17 @@ public class UserService {
 */
   }
 
-  public User registerUser(User user) {
+  public Users registerUser(Users user) {
     /*user.setPassword(passwordEncoder.encode(user.getPassword()));*/
     return userRepository.save(user);
   }
 
-  public User findByUsername(String username) {
+  public Users findByUsername(String username) {
     return userRepository.findByUsername(username);
   }
 
-public Optional<User> findAddress(Long id){
-   Optional<User> user= userRepository.findById(id);
+public Optional<Users> findAddress(Long id){
+   Optional<Users> user= userRepository.findById(id);
    if(user.isPresent()) {
      return user;
    }

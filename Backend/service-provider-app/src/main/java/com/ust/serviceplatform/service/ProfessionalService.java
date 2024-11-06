@@ -4,7 +4,7 @@ package com.ust.serviceplatform.service;
 
 import com.ust.serviceplatform.model.Professional;
 import com.ust.serviceplatform.model.Role;
-import com.ust.serviceplatform.model.User;
+import com.ust.serviceplatform.model.Users;
 import com.ust.serviceplatform.repository.ProfessionalRepository;
 import com.ust.serviceplatform.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +23,10 @@ public class ProfessionalService {
 
   // Method to register a user as a professional
   public Professional registerAsProfessional(Long userId, Professional professionDetails, String location) {
-    Optional<User> optionalUser = userRepository.findById(userId);
+    Optional<Users> optionalUser = userRepository.findById(userId);
 
     if (optionalUser.isPresent()) {
-      User user = optionalUser.get();
+      Users user = optionalUser.get();
 
       // Check if the user already has the SERVICE_PROVIDER role
       if (!user.getRoles().contains(Role.SERVICE_PROVIDER)) {

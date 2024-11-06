@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class Booking {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   private Long userId;
@@ -31,5 +31,8 @@ public class Booking {
   private Long price;
 
   private long serviceId;
+  
+  //orderId of Payment 
+  private String orderId;
 
 }

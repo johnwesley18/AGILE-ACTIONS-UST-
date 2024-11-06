@@ -2,16 +2,29 @@ package com.ust.serviceplatform.controller;
 
 
 
-import com.ust.serviceplatform.model.Booking;
-import com.ust.serviceplatform.service.BookingService;
-import lombok.RequiredArgsConstructor;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 /*
 import org.springframework.security.access.prepost.PreAuthorize;
 */
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.ust.serviceplatform.client.PaymentClient;
+import com.ust.serviceplatform.model.Booking;
+import com.ust.serviceplatform.pojo.TransactionPojo;
+import com.ust.serviceplatform.service.BookingService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -21,6 +34,9 @@ import java.util.List;
 public class BookingController {
 
   private final BookingService bookingService;
+  
+  @Autowired
+  private PaymentClient paymentClient;
 
 /*
   @PreAuthorize("hasRole('USER')")
@@ -34,9 +50,17 @@ public class BookingController {
   @PreAuthorize("hasRole('USER')")
 */
   @PostMapping
-  public ResponseEntity<?> saveBooking(@RequestBody Booking booking) {
-
-    return ResponseEntity.ok(bookingService.saveBooking(booking));
+  public ResponseEntity<?> saveBooking(@RequestBody Booking booking) throws Exception {
+	  System.out.println(booking);
+	  Booking order = bookingService.saveBooking(booking);
+      TransactionPojo pojo=new TransactionPojo();
+      pojo.setAmount((double)order.getPrice()*100);
+      pojo.setUserId(order.getUserId());
+      TransactionPojo transaction=paymentClient.createNewTransaction(pojo);
+      Map<String,Object> objects=new HashMap<>();
+      objects.put("order", order);
+      objects.put("transaction", transaction);
+    return ResponseEntity.ok(objects);
   }
   @GetMapping("/user/{userId}")
   public ResponseEntity<List<Booking>> getBookingsByUserId(@PathVariable Long userId) {

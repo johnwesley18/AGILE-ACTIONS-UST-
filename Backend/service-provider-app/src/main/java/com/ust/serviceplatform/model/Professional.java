@@ -12,12 +12,12 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Professional {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @OneToOne
   @JoinColumn(name = "user_id")
-  private User user;  // Links to the User who becomes a professional
+  private Users user;  // Links to the User who becomes a professional
 
   private String professionDetails;  // Description of the services offered by the professional
 

@@ -7,12 +7,12 @@ import lombok.Data;
 @Entity
 public class Review {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
-  private User user;
+  private Users user;
 
   @ManyToOne
   @JoinColumn(name = "professional_id", nullable = false)
