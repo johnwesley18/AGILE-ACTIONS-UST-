@@ -3,7 +3,7 @@ spring:
     name: UserManagement
 
   datasource:
-    # MySQL configuration
+    # Postgres configuration
     url: jdbc:postgresql://localhost:5432/service_provider_platform
     username: postgres
     password: postgres
