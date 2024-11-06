@@ -1,5 +1,6 @@
 package com.project.MailService.Controller;
 
+import com.project.MailService.Models.Mail;
 import com.project.MailService.Service.MailService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,7 @@ public class MailController {
     private MailService mailService;
 
     @PostMapping("/sendConfirmation")
-    public void sendBookingConfirmation(
-            @RequestParam String userEmail,
-            @RequestParam String serviceName,
-            @RequestParam String slot,
-            @RequestParam String time,
-            @RequestParam double amountPaid) {
-        mailService.sendBookingConfirmation(userEmail, serviceName, slot, time, amountPaid);
+    public void sendBookingConfirmation(@RequestBody Mail mail) {
+        mailService.sendBookingConfirmation(mail);
     }
 }

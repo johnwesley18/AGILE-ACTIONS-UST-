@@ -2,7 +2,6 @@ package com.serviceharbor.auth.service;
 
 import com.serviceharbor.auth.model.Booking;
 import com.serviceharbor.auth.repository.BookingRepository;
-import com.project.MailService.Service.MailService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
