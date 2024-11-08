@@ -14,66 +14,66 @@ export class ServicesComponent {
   popularServices = [
     { 
       title: 'Home Cleaning', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Home cleaning
+      image: 'https://www.apzomedia.com/wp-content/uploads/2020/02/How-House-Cleaning-Routine-Will-Change-Your-Life-1920x1280.jpeg' // Placeholder for Home cleaning
     },
     { 
       title: 'Furniture Assembly', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Furniture assembly
+      image: 'https://tse4.mm.bing.net/th/id/OIP.wYx8zJdkm4ZKC4D8wuNAiwHaE8?rs=1&pid=ImgDetMain' // Placeholder for Furniture assembly
     },
     { 
       title: 'Plumbing Service', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Plumbing service
+      image: 'https://tse1.mm.bing.net/th/id/OIP.rrS1D2mztOgAeFiLX3n1LQHaE8?rs=1&pid=ImgDetMain' // Placeholder for Plumbing service
     },
     { 
       title: 'Electrical Service', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Electrical service
+      image: 'https://tse2.mm.bing.net/th/id/OIP.A_yHsYsvqMBb0UvXFV9LNwHaE8?rs=1&pid=ImgDetMain' // Placeholder for Electrical service
     },
     { 
       title: 'Smart Home Service', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Smart home service
+      image: 'https://tse4.mm.bing.net/th/id/OIP.Kp4TOHnGw737PYyZHJVzKwHaD9?rs=1&pid=ImgDetMain' // Placeholder for Smart home service
     },
     { 
       title: 'Moving Service', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse3.mm.bing.net/th/id/OIP.3dK4LIZ_IsLTGFYhAMzIVgHaEK?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Tutoring', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Landscaping', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse4.mm.bing.net/th/id/OIP.uegpYOADdivIMbVt3aCtUwHaE0?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Home Repair', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://thumbs.dreamstime.com/b/home-service-repair-construction-fix-house-background-home-service-repair-construction-fix-house-background-155882678.jpg' // Placeholder for Moving service
     },
     { 
       title: 'Home Renovation', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse3.mm.bing.net/th/id/OIP.t6fUPKF9G9WoP4Z6NXW5agHaE7?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Personal Care', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse2.mm.bing.net/th/id/OIP.EaZCNCVGcxakWMShtnUdxgHaEK?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Painting', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Moving service
+      image: 'https://tse3.mm.bing.net/th/id/OIP.-QUjwf8zVFykzb0VRdnwrQHaDt?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
   ];
 
   cleaningServices = [
     { 
       title: 'Home Cleaning', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Home cleaning
+      image: 'https://tse3.mm.bing.net/th/id/OIP.4sQXSQ4DMrzDI0lGYv65CwHaE8?rs=1&pid=ImgDetMain' // Placeholder for Home cleaning
     },
     { 
       title: 'Office Cleaning', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Office cleaning
+      image: 'https://www.healthyhomesutah.com/wp-content/uploads/Professional-House-Cleaning-Services-in-North-Ogden-Utah.jpg' // Placeholder for Office cleaning
     },
     { 
       title: 'Rental Home Cleaning', 
-      image: 'https://via.placeholder.com/150' // Placeholder for Rental home cleaning
+      image: 'https://tse1.mm.bing.net/th/id/OIP.wA6yCKRMN3E3tg5t_wsEnwHaEK?rs=1&pid=ImgDetMain' // Placeholder for Rental home cleaning
     }
   ];
 

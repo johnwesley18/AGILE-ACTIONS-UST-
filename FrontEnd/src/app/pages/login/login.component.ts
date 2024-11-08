@@ -31,7 +31,7 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const loginApiUrl = 'http://localhost:9998/auth/login'; // Login API
-      const userIdApiUrl = `http://localhost:8080/api/users/login/${this.loginForm.get('email')?.value}`; // Fetch userId API
+      const userIdApiUrl = `http://localhost:9099/api/users/login/${this.loginForm.get('email')?.value}`; // Fetch userId API
 
       // First API call for login
       this.http.post(loginApiUrl, this.loginForm.value).subscribe(
@@ -50,7 +50,7 @@ export class LoginComponent {
               this.authService.setUserId(userId);
 
               // Address URL using the fetched userId
-              const addressUrl = `http://localhost:8080/api/users/address/${userId}`;
+              const addressUrl = `http://localhost:9099/api/users/address/${userId}`;
 
               // Fetch the address
               this.http.get(addressUrl).subscribe(

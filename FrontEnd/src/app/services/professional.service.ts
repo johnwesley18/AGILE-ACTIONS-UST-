@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfessionalService {
-  private baseUrl = 'http://localhost:8080/api/professionals'; // Base URL for API
+  private baseUrl = 'http://localhost:9099/api/professionals'; // Base URL for API
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getProfessionalDetails(userId: number): void {
-    const apiUrl = `http://localhost:8080/api/professionals/${userId}`;
+    const apiUrl = `http://localhost:9099/api/professionals/${userId}`;
 
     this.http.get(apiUrl).subscribe(
       (response: any) => {
@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   getBookings(profid: number | null): void {
     if (profid) {
-      const apiUrl = `http://localhost:8080/api/bookings/${profid}`; // Adjust the API URL as needed
+      const apiUrl = `http://localhost:9099/api/bookings/${profid}`; // Adjust the API URL as needed
 
       this.http.get(apiUrl).subscribe(
         (response: any) => {

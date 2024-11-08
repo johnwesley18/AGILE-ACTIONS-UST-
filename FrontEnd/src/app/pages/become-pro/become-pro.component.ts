@@ -97,7 +97,7 @@ export class BecomeProComponent {
   onSubmit() {
     const userId = this.authService.getUserId();
     if (userId) {
-      const apiUrl = `http://localhost:8080/api/professionals/register/${userId}`; // Append userId to the URL
+      const apiUrl = `http://localhost:9099/api/professionals/register/${userId}`; // Append userId to the URL
 
       this.httpClient.post(apiUrl, this.user).subscribe(
         (response) => {

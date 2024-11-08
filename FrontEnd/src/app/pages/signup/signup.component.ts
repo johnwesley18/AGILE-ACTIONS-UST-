@@ -39,7 +39,7 @@ export class SignupComponent {
   onSubmit() {
     if (this.signupForm.valid) {
       const apiUrl = 'http://localhost:9998/auth/signup';
-      const apiUrll = 'http://localhost:8080/api/users/register';
+      const apiUrll = 'http://localhost:9099/api/users/register';
       
       // Collect user credentials for signup
       const userCredentials = {

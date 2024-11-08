@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CartComponent implements OnInit {
   bookings: any[] = []; 
-  backendUrl: string = 'http://localhost:8080/reviews'; 
+  backendUrl: string = 'http://localhost:9099/reviews'; 
 
   constructor(
     private bookingService: BookingService,

@@ -1,33 +1,34 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule], // Add CommonModule here
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   // Check if the user is authenticated
   isAuthenticated(): boolean {
-    return this.authService.getToken() !== null; // Return true if token exists
+    return this.authService.getToken() !== null;
   }
 
   // Handle sign out
   signOut(): void {
-    this.authService.clearToken(); // Clear the token
-    this.authService.clearUserId(); // Clear user ID
-    this.authService.clearProfessionalId(); // Clear professional ID
-    this.router.navigate(['/']); // Navigate to home or any other desired route
+    this.authService.clearToken();
+    this.authService.clearUserId();
+    this.authService.clearProfessionalId();
+    this.router.navigate(['/']);
   }
 
   // Navigate to the authentication page
   navigateToAuth(): void {
-    this.router.navigate(['/auth']); // Change to your actual auth route
+    this.router.navigate(['/auth']);
   }
 }

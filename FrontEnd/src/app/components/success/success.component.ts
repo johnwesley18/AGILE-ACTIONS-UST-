@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service'; // Adjust path as nee
   styleUrls: ['./success.component.css']
 })
 export class SuccessComponent implements OnInit {
-  backendUrl: string = 'http://localhost:8080/api/bookings'; // Your backend URL
+  backendUrl: string = 'http://localhost:9099/api/bookings'; // Your backend URL
   bookingDetails: any; // Change to a specific type if you have one
 
   constructor(
@@ -29,13 +29,13 @@ export class SuccessComponent implements OnInit {
     console.log('Retrieved booking details:', this.bookingDetails);
 
     // Check if booking details are available before registering
-    if (this.bookingDetails) {
-      this.registerBooking();
-    } else {
-      console.error('No booking details found. Redirecting to service detail page.');
-      alert('No booking details found. Please try again.');
-      this.router.navigate(['/service-detail']); // Redirect to service detail or an appropriate route
-    }
+    // if (this.bookingDetails) {
+    //   this.registerBooking();
+    // } else {
+    //   console.error('No booking details found. Redirecting to service detail page.');
+    //   alert('No booking details found. Please try again.');
+    //   this.router.navigate(['/service-detail']); // Redirect to service detail or an appropriate route
+    // }
   }
 
   registerBooking() {
