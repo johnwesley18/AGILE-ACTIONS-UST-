@@ -7,6 +7,9 @@ public class Mail {
     private String time;
     private double amountPaid;
 
+    public Mail() {
+    	
+    }
     // Constructor
     public Mail(String userEmail, String serviceName, String slot, String time, double amountPaid) {
         this.userEmail = userEmail;

@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ust.serviceplatform.client.MailClient;
 import com.ust.serviceplatform.client.PaymentClient;
 import com.ust.serviceplatform.model.Booking;
+import com.ust.serviceplatform.model.Mail;
 import com.ust.serviceplatform.pojo.TransactionPojo;
+import com.ust.serviceplatform.repository.ServiceRepository;
+import com.ust.serviceplatform.repository.UserRepository;
 import com.ust.serviceplatform.service.BookingService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +40,16 @@ public class BookingController {
   private final BookingService bookingService;
   
   @Autowired
+  private UserRepository userRepository;
+  
+  @Autowired
+  private ServiceRepository serviceRepository;
+  
+  @Autowired
   private PaymentClient paymentClient;
+  
+  @Autowired
+  private MailClient mailClient;
 
 /*
   @PreAuthorize("hasRole('USER')")
@@ -60,6 +73,13 @@ public class BookingController {
       Map<String,Object> objects=new HashMap<>();
       objects.put("order", order);
       objects.put("transaction", transaction);
+      Mail mailObject=new Mail();
+      mailObject.setAmountPaid(order.getPrice());
+//      mailObject.setSlot(order.getBookingTime());
+//      mailObject.setTime(order.getBookingTime());
+//      mailObject.setServiceName(serviceRepository.findById(order.getServiceId()).get().getTitle());
+      mailObject.setUserEmail(userRepository.findById(order.getUserId()).get().getUsername());
+      mailClient.sendBookingConfirmation(mailObject);
     return ResponseEntity.ok(objects);
   }
   @GetMapping("/user/{userId}")
