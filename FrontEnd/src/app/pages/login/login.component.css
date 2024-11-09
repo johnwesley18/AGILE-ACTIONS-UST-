@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  min-height: 80vh;
   background-color: #f4f4f4;
-  margin-bottom: -10rem;
+  /* margin-bottom: -10rem; */
   
 
 }

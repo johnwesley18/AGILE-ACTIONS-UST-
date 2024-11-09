@@ -36,11 +36,11 @@ export class ServiceDetailComponent {
     { id: 4, title: 'Electrical Service', description: 'Certified electricians available to handle all your electrical needs.', price: 130, image: 'https://tse2.mm.bing.net/th/id/OIP.A_yHsYsvqMBb0UvXFV9LNwHaE8?rs=1&pid=ImgDetMain' },
     { id: 5, title: 'Smart Home Service', description: 'Upgrade your home with smart devices and automation solutions.', price: 200, image: 'https://tse4.mm.bing.net/th/id/OIP.Kp4TOHnGw737PYyZHJVzKwHaD9?rs=1&pid=ImgDetMain' },
     { id: 6, title: 'Moving Service', description: 'Let professionals help you move to your new home with ease.', price: 180, image: 'https://tse3.mm.bing.net/th/id/OIP.3dK4LIZ_IsLTGFYhAMzIVgHaEK?rs=1&pid=ImgDetMain' },
-    { id: 7, title: 'Home Repair', description: 'Get expert help for all your home repair needs.', price: 150, image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' },
-    { id: 8, title: 'Home Renovation', description: 'Transform your home with professional renovation services.', price: 300, image: 'https://tse4.mm.bing.net/th/id/OIP.uegpYOADdivIMbVt3aCtUwHaE0?rs=1&pid=ImgDetMain' },
+    { id: 7, title: 'Home Repair', description: 'Get expert help for all your home repair needs.', price: 150, image: 'https://thumbs.dreamstime.com/b/home-service-repair-construction-fix-house-background-home-service-repair-construction-fix-house-background-155882678.jpg' },
+    { id: 8, title: 'Home Renovation', description: 'Transform your home with professional renovation services.', price: 300, image: 'https://tse3.mm.bing.net/th/id/OIP.t6fUPKF9G9WoP4Z6NXW5agHaE7?rs=1&pid=ImgDetMain' },
     { id: 9, title: 'Tutoring', description: 'Expert tutoring services for various subjects and levels.', price: 600, image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' },
-    { id: 10, title: 'Personal Care', description: 'Professional personal care services including grooming and wellness.', price: 800, image: 'https://tse3.mm.bing.net/th/id/OIP.t6fUPKF9G9WoP4Z6NXW5agHaE7?rs=1&pid=ImgDetMain' },
-    { id: 11, title: 'Landscaping', description: 'Create beautiful outdoor spaces with expert landscaping services.', price: 250, image: 'https://tse2.mm.bing.net/th/id/OIP.EaZCNCVGcxakWMShtnUdxgHaEK?rs=1&pid=ImgDetMain' },
+    { id: 10, title: 'Personal Care', description: 'Professional personal care services including grooming and wellness.', price: 800, image: 'https://tse2.mm.bing.net/th/id/OIP.EaZCNCVGcxakWMShtnUdxgHaEK?rs=1&pid=ImgDetMain' },
+    { id: 11, title: 'Landscaping', description: 'Create beautiful outdoor spaces with expert landscaping services.', price: 250, image: 'https://tse4.mm.bing.net/th/id/OIP.uegpYOADdivIMbVt3aCtUwHaE0?rs=1&pid=ImgDetMain' },
     { id: 12, title: 'Painting', description: 'Paint Your Homes Beautiful.', price: 250, image: 'https://tse3.mm.bing.net/th/id/OIP.-QUjwf8zVFykzb0VRdnwrQHaDt?rs=1&pid=ImgDetMain' },
   ];
 
