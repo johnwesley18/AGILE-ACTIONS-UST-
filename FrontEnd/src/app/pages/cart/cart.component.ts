@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
   fetchBookings(): void {
     this.bookingService.getUserBookings().subscribe({
       next: (data: any[]) => {
+        console.log(data);
         this.bookings = data.map(booking => ({
           ...booking,
           review: { rating: null, description: '' }, 
