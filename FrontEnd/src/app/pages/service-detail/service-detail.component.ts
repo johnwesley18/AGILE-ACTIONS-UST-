@@ -127,10 +127,12 @@ export class ServiceDetailComponent {
     const serviceProviderId = 1; // Update this as necessary, or dynamically fetch the service provider ID if needed
     const address = this.authService.getAddress(); // Ensure this retrieves the user's address correctly
     // const { serviceDate, description, price, serviceId } = this.bookingDetails;
-    const product = this.services.find(p => p.title === payload.title);
-    console.log(product)
+    let product = this.services.find(p => p.title === payload.title);
+    if(!product){
+      product = this.cleaningServices.find(p=>p.title===payload.title)
+    }
     let price=product?.price ? product.price*payload.quantity:150*payload.quantity;
-    this.http.post("http://localhost:9099/api/bookings",{...payload,userId,serviceProviderId,address,price:price,quantity:payload.quantity}).subscribe({
+    this.http.post("http://localhost:9099/api/bookings",{...payload,userId,serviceProviderId,address,price:price,quantity:payload.quantity,serviceId:product?.id,description:product?.description,bookingTime:new Date(payload.serviceDate)}).subscribe({
       next:(data:any)=>{
         var options = {
           key: 'rzp_test_alc9PznICVvKQb',
