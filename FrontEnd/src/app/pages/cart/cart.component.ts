@@ -42,7 +42,7 @@ export class CartComponent implements OnInit {
           showReviewModal: false 
         }));
       },
-      error: (error) => {
+      error: (error: unknown) => {
         console.error('Error fetching bookings:', error);
         alert('There was an error fetching your bookings. Please try again.');
       }
