@@ -1,0 +1,92 @@
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-64 bg-gray-800 text-white">
+    <div class="p-6 flex flex-col items-center">
+        <div class="flex items-center justify-between w-full h-10">
+            <img src="assets/admin-profile.jpg" alt="Admin Profile Picture" class="size-8 rounded-full" />
+            <span class="text-lg font-bold">Admin Dashboard</span>
+        </div>
+      <p class="text-gray-400 my-6">System Administrator</p>
+      <nav class="w-full">
+        <a routerLink="/admin/service-listing" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+          <mat-icon class="mr-3">error_outline</mat-icon>
+          <span>Service Listing</span>
+        </a>
+        <a routerLink="/admin/service-agents" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+          <mat-icon class="mr-3">supervisor_account</mat-icon>
+          <span>Service Agents</span>
+        </a>
+        <a routerLink="/admin/refunds" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+          <mat-icon class="mr-3">monetization_on</mat-icon>
+          <span>Refunds</span>
+        </a>
+        <a routerLink="/admin/rework-requests" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+          <mat-icon class="mr-3">autorenew</mat-icon>
+          <span>Rework Requests</span>
+        </a>
+        <a routerLink="/admin/reported-issues" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+          <mat-icon class="mr-3">error_outline</mat-icon>
+          <span>Reported Issues</span>
+        </a>
+        
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  
+
+  <div class="flex-1 bg-gray-100 p-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Service Agents Card -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg font-semibold text-gray-800">Service Agents</span>
+          <mat-icon class="text-blue-500">supervisor_account</mat-icon>
+        </div>
+        <span class="text-3xl font-bold text-gray-900">{{statistics.totalServiceAgents}}</span>
+      </div>
+
+      <!-- Pending Refunds Card -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg font-semibold text-gray-800">Pending Refunds</span>
+          <mat-icon class="text-amber-500">monetization_on</mat-icon>
+        </div>
+        <span class="text-3xl font-bold text-gray-900">{{statistics.pendingRefunds}}</span>
+      </div>
+
+      <!-- Rework Requests Card -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg font-semibold text-gray-800">Rework Requests</span>
+          <mat-icon class="text-indigo-500">autorenew</mat-icon>
+        </div>
+        <span class="text-3xl font-bold text-gray-900">{{statistics.reworkRequests}}</span>
+      </div>
+
+      <!-- Reported Issues Card -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-lg font-semibold text-gray-800">Reported Issues</span>
+          <mat-icon class="text-red-500">error_outline</mat-icon>
+        </div>
+        <span class="text-3xl font-bold text-gray-900">{{statistics.reportedIssues}}</span>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

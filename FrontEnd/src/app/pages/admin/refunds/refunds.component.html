@@ -1,0 +1,178 @@
+<div class="refunds-container">
+  <h2>Refund Requests</h2>
+
+  <div class="refunds-list">
+    <button class="btn btn-add" (click)="openAddModal()">
+      Add New Refund
+    </button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Amount</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let refund of refunds">
+          <td>{{refund.orderId}}</td>
+          <td>{{refund.customerName}}</td>
+          <td>₹{{refund.amount}}</td>
+          <td class="description-cell">{{refund.reason}}</td>
+          <td>{{refund.status}}</td>
+          <td class="actions-cell">
+            <button 
+              class="btn btn-edit"
+              *ngIf="refund.status === 'pending'"
+              (click)="processRefund(refund._id, 'approved')">
+              Approve
+            </button>
+            <button 
+              class="btn btn-delete"
+              *ngIf="refund.status === 'pending'"
+              (click)="processRefund(refund._id, 'rejected')">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="loading-spinner" *ngIf="loading">
+    Loading...
+  </div>
+</div>
+
+<!-- Add Refund Modal -->
+<div class="modal" *ngIf="showAddModal">
+  <div class="modal-content">
+    <h3>Add New Refund</h3>
+    <form (ngSubmit)="addRefund()">
+      <div class="form-group">
+        <label for="orderId">Order ID:</label>
+        <input type="text" id="orderId" [(ngModel)]="newRefund.orderId" name="orderId" required>
+      </div>
+
+      <div class="form-group">
+        <label for="customerName">Customer:</label>
+        <input type="text" id="customerName" [(ngModel)]="newRefund.customerName" name="customerName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" [(ngModel)]="newRefund.amount" name="amount" required>
+      </div>
+
+      <div class="form-group">
+        <label for="reason">Reason:</label>
+        <textarea id="reason" [(ngModel)]="newRefund.reason" name="reason" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="newRefund.status" name="status" required>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-save">Save</button>
+        <button type="button" class="btn btn-cancel" (click)="closeAddModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+.refunds-container {
+  padding: 20px;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
+.description-cell {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-pagination {
+  background-color: #2196F3;
+  color: white;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+</style>

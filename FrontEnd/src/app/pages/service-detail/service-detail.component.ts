@@ -50,6 +50,16 @@ export class ServiceDetailComponent {
     { id: 14, title: 'Rental Home Cleaning', description: 'Thorough cleaning of your rental property to prepare it for new tenants.', price: 140, image: 'https://tse1.mm.bing.net/th/id/OIP.wA6yCKRMN3E3tg5t_wsEnwHaEK?rs=1&pid=ImgDetMain' }
   ];
 
+  serviceName: string = '';
+  selectedSlot: string = '';
+
+  timeSlots: string[] = [
+    '09:00 AM - 11:00 AM',
+    '11:00 AM - 01:00 PM',
+    '02:00 PM - 04:00 PM',
+    '04:00 PM - 06:00 PM'
+  ];
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -99,8 +109,8 @@ export class ServiceDetailComponent {
   }
 
   async placeOrder() {
-    if (!this.serviceDate) {
-      alert('Please select a date before placing your order.');
+    if (!this.serviceDate || !this.serviceName || !this.selectedSlot) {
+      alert('Please fill in all required fields before placing your order.');
     } else if (!this.isDateValid()) {
       alert('Please select a present or future date.');
     } else if (this.authService.getToken() === null) {
@@ -122,6 +132,8 @@ export class ServiceDetailComponent {
       title: this.serviceDetail.title,
       quantity: this.orderQuantity,
       serviceDate: this.serviceDate,
+      serviceName: this.serviceName,
+      timeSlot: this.selectedSlot
     };
     const userId = this.authService.getUserId(); // Ensure this returns the correct user ID
     const serviceProviderId = 1; // Update this as necessary, or dynamically fetch the service provider ID if needed

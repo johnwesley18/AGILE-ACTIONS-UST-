@@ -18,8 +18,25 @@ body {
 }
 
 .logo {
-  font-size: 24px; /* Adjust size for visibility */
-  margin-right: 15px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: -1px; /* Changed from // to /* for comment */
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  
+  /* Gradient effect */
+  background: linear-gradient(45deg, #2196f3, #38011f);
+  -webkit-background-clip: text;
+  background-clip: text; /* Added for better browser compatibility */
+  -webkit-text-fill-color: transparent;
+}
+
+/* Moved hover and animation outside the .logo class since CSS doesn't support nesting without preprocessors */
+.logo:hover {
+  transform: scale(1.2);
+  text-shadow: 2px 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 .all-services {

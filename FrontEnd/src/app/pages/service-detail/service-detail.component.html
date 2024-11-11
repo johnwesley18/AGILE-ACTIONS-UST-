@@ -6,8 +6,17 @@
 
   <h3>Book this service</h3>
   <div class="order-form">
+    <label for="serviceName">Service Name:</label>
+    <input class="service-input" id="serviceName" type="text" [(ngModel)]="serviceName" placeholder="Enter service name">
+
     <label for="serviceDate">Select Date:</label>
     <input class="date-input" id="serviceDate" type="date" [(ngModel)]="serviceDate">
+
+    <label for="timeSlot">Select Time Slot:</label>
+    <select class="slot-input" id="timeSlot" [(ngModel)]="selectedSlot">
+      <option value="">Select a time slot</option>
+      <option *ngFor="let slot of timeSlots" [value]="slot">{{slot}}</option>
+    </select>
 
     <label for="orderQuantity">Quantity:</label>
     <input class="quantity-input" id="orderQuantity" type="number" [(ngModel)]="orderQuantity" min="1" placeholder="Quantity">

@@ -188,3 +188,40 @@
 .see-more-btn:hover {
   background-color: #0056b3;
 }
+
+.service-input,
+.slot-input {
+  padding: 12px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.service-input:focus,
+.slot-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.slot-input {
+  background-color: white;
+  cursor: pointer;
+}
+
+.slot-input option {
+  padding: 12px;
+}
+
+/* Update existing media query */
+@media (max-width: 768px) {
+  /* ... existing mobile styles ... */
+  
+  .service-input,
+  .slot-input {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}

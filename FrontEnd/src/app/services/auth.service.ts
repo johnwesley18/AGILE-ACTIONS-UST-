@@ -92,4 +92,9 @@ export class AuthService {
     this.address = null;
     localStorage.removeItem('address');
   }
+
+  // Check if user is logged in by verifying token exists
+  isLoggedIn(): boolean {
+    return this.getToken() !== null;
+  }
 }
