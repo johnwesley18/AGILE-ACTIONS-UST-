@@ -76,8 +76,9 @@ public class BookingController {
       Mail mailObject=new Mail();
       mailObject.setAmountPaid(order.getPrice());
 //      mailObject.setSlot(order.getBookingTime());
-//      mailObject.setTime(order.getBookingTime());
+      mailObject.setTime(order.getBookingTime());
 //      mailObject.setServiceName(serviceRepository.findById(order.getServiceId()).get().getTitle());
+//      System.out.println(serviceRepository.findById(order.getServiceId()).get().getTitle());
       mailObject.setUserEmail(userRepository.findById(order.getUserId()).get().getUsername());
       mailClient.sendBookingConfirmation(mailObject);
     return ResponseEntity.ok(objects);

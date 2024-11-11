@@ -34,5 +34,10 @@ public class Booking {
   
   //orderId of Payment 
   private String orderId;
+  
+//  @PrePersist
+//  public void updateDate() {
+//	  this.bookingTime=LocalDate.now();
+//  }
 
 }
