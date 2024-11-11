@@ -1,4 +1,4 @@
-<div class="form-section">
+<!-- <div class="form-section">
   <div class="form-container">
     <h1>Start earning money this week!</h1>
     <p>Gain access to hundreds of jobs in your city and build your own schedule.</p>
@@ -40,4 +40,169 @@
       </app-quote-card>
     </div>
   </div>
-</section>
+</section> -->
+
+
+<div class="form-section">
+  <div class="form-container">
+    <h1>Start Your Service Journey</h1>
+    <p>Share your expertise and set your own schedule. Join our community of professional service providers.</p>
+
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="inner-form">
+      <div class="form-row">
+        <div class="input-group">
+          <label for="location">Location</label>
+          <input 
+            id="location"
+            type="text"
+            formControlName="location"
+            placeholder="Enter your city"
+            [class.is-invalid]="serviceForm.get('location')?.invalid && serviceForm.get('location')?.touched">
+          <div class="error-message" *ngIf="serviceForm.get('location')?.invalid && serviceForm.get('location')?.touched">
+            Location is required
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="zip">ZIP Code</label>
+          <input 
+            id="zip"
+            type="text"
+            formControlName="zip"
+            placeholder="Enter ZIP code"
+            [class.is-invalid]="serviceForm.get('zip')?.invalid && serviceForm.get('zip')?.touched">
+          <div class="error-message" *ngIf="serviceForm.get('zip')?.invalid && serviceForm.get('zip')?.touched">
+            Please enter a valid ZIP code
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="input-group">
+          <label for="title">Service Title</label>
+          <input 
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="Enter service title"
+            [class.is-invalid]="serviceForm.get('title')?.invalid && serviceForm.get('title')?.touched">
+          <div class="error-message" *ngIf="serviceForm.get('title')?.invalid && serviceForm.get('title')?.touched">
+            Title is required
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="price">Price</label>
+          <input 
+            id="price"
+            type="number"
+            formControlName="price"
+            placeholder="Enter price"
+            step="0.01"
+            [class.is-invalid]="serviceForm.get('price')?.invalid && serviceForm.get('price')?.touched">
+          <div class="error-message" *ngIf="serviceForm.get('price')?.invalid && serviceForm.get('price')?.touched">
+            Please enter a valid price
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="description">Service Description</label>
+        <textarea 
+          id="description"
+          formControlName="description"
+          placeholder="Describe your service in detail"
+          [class.is-invalid]="serviceForm.get('description')?.invalid && serviceForm.get('description')?.touched">
+        </textarea>
+        <div class="error-message" *ngIf="serviceForm.get('description')?.invalid && serviceForm.get('description')?.touched">
+          Description must be at least 50 characters
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="image_url">Image Url</label>
+        <input 
+          id="image_url"
+          formControlName="image_url"
+          placeholder="Image Url"
+          [class.is-invalid]="serviceForm.get('image_url')?.invalid && serviceForm.get('image_url')?.touched" />
+        
+        <div class="error-message" *ngIf="serviceForm.get('image_url')?.invalid && serviceForm.get('image_url')?.touched">
+         Image Public url is required
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="profession">Primary Service Category</label>
+        <select 
+          id="profession"
+          formControlName="profession"
+          [class.is-invalid]="serviceForm.get('profession')?.invalid && serviceForm.get('profession')?.touched">
+          <option value="">Select your category</option>
+          <option *ngFor="let option of professionOptions" [value]="option">
+            {{option}}
+          </option>
+        </select>
+        <div class="error-message" *ngIf="serviceForm.get('profession')?.invalid && serviceForm.get('profession')?.touched">
+          Please select a category
+        </div>
+      </div>
+
+      <label> NSDC Professional Certificate</label>
+      <!-- <div class="file-upload-container" 
+           (dragover)="onDragOver($event)" 
+           (drop)="onDrop($event)">
+        <input 
+          type="file" 
+          class="file-input" 
+          (change)="onFileChange($event)" 
+          accept="image/*,.pdf" 
+          multiple>
+        <div class="upload-content">
+          <i class="upload-icon"></i>
+          <p>Drag and drop files here or click to upload</p>
+          <span class="file-types">Accepted formats: Images, PDF</span>
+        </div>
+        <div class="file-list" *ngIf="files.length > 0">
+          <div class="file-item" *ngFor="let file of files">
+            {{ file.name }}
+          </div>
+        </div>
+      </div> -->
+
+      <div 
+  class="file-upload-container" 
+  (dragover)="onDragOver($event)" 
+  (drop)="onDrop($event)" 
+  (click)="triggerFileInput()">
+  <input 
+    type="file" 
+    #fileInput 
+    class="file-input" 
+    (change)="onFileChange($event)" 
+    accept="image/*,.pdf" 
+    multiple 
+    style="display: none;">
+  <div class="upload-content">
+    <i class="upload-icon"></i>
+    <p>Drag and drop files here or click to upload</p>
+    <span class="file-types">Accepted formats: Images, PDF</span>
+  </div>
+  <div class="file-list" *ngIf="files.length > 0">
+    <div class="file-item" *ngFor="let file of files">
+      {{ file.name }}
+    </div>
+  </div>
+</div>
+
+
+      <button type="submit" class="btn-submit" [disabled]="serviceForm.invalid">
+        Submit Application
+      </button>
+    </form>
+
+    <p class="status-link">
+      Already applied? <a routerLink="/application-status">Check your application status</a>
+    </p>
+  </div>
+</div>
