@@ -1,7 +1,12 @@
-<app-navbar></app-navbar>
+<ng-container *ngIf="!isAdminRoute()">
+    <app-navbar></app-navbar>
+</ng-container>
+
 <div class="content">
     <router-outlet></router-outlet> <!-- If you're using routing -->
 
 </div>
 
-<app-footer></app-footer>
+<ng-container *ngIf="!isAdminRoute()">
+    <app-footer></app-footer>
+</ng-container>

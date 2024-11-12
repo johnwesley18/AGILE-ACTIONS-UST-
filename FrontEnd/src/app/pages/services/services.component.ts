@@ -14,7 +14,7 @@ export class ServicesComponent {
   popularServices = [
     { 
       title: 'Home Cleaning', 
-      image: 'https://www.apzomedia.com/wp-content/uploads/2020/02/How-House-Cleaning-Routine-Will-Change-Your-Life-1920x1280.jpeg' // Placeholder for Home cleaning
+      image: 'https://scrubnbubbles.com/wp-content/uploads/2022/05/cleaning-service.jpeg' // Placeholder for Home cleaning
     },
     { 
       title: 'Furniture Assembly', 
@@ -38,7 +38,7 @@ export class ServicesComponent {
     },
     { 
       title: 'Tutoring', 
-      image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' // Placeholder for Moving service
+      image: 'https://th.bing.com/th/id/OIP.oUsArir-NWmmjK1JLpdLUwHaE8?rs=1&pid=ImgDetMain' // Placeholder for Moving service
     },
     { 
       title: 'Landscaping', 

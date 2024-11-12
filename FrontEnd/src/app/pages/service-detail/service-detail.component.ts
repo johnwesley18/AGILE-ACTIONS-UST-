@@ -30,7 +30,7 @@ export class ServiceDetailComponent {
   backendUrll: string = 'http://localhost:3000/api'; // API URL for booking
 
   services = [
-    { id: 1, title: 'Home Cleaning', description: 'Professional home cleaning services to make your home shine.', price: 120, image: 'https://www.apzomedia.com/wp-content/uploads/2020/02/How-House-Cleaning-Routine-Will-Change-Your-Life-1920x1280.jpeg' },
+    { id: 1, title: 'Home Cleaning', description: 'Professional home cleaning services to make your home shine.', price: 120, image: 'https://scrubnbubbles.com/wp-content/uploads/2022/05/cleaning-service.jpeg' },
     { id: 2, title: 'Furniture Assembly', description: 'Get professional help to assemble your furniture quickly and efficiently.', price: 90, image: 'https://tse4.mm.bing.net/th/id/OIP.wYx8zJdkm4ZKC4D8wuNAiwHaE8?rs=1&pid=ImgDetMain' },
     { id: 3, title: 'Plumbing Service', description: 'Expert plumbing service to resolve any pipe or water-related issues.', price: 150, image: 'https://tse1.mm.bing.net/th/id/OIP.rrS1D2mztOgAeFiLX3n1LQHaE8?rs=1&pid=ImgDetMain' },
     { id: 4, title: 'Electrical Service', description: 'Certified electricians available to handle all your electrical needs.', price: 130, image: 'https://tse2.mm.bing.net/th/id/OIP.A_yHsYsvqMBb0UvXFV9LNwHaE8?rs=1&pid=ImgDetMain' },
@@ -38,7 +38,7 @@ export class ServiceDetailComponent {
     { id: 6, title: 'Moving Service', description: 'Let professionals help you move to your new home with ease.', price: 180, image: 'https://tse3.mm.bing.net/th/id/OIP.3dK4LIZ_IsLTGFYhAMzIVgHaEK?rs=1&pid=ImgDetMain' },
     { id: 7, title: 'Home Repair', description: 'Get expert help for all your home repair needs.', price: 150, image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' },
     { id: 8, title: 'Home Renovation', description: 'Transform your home with professional renovation services.', price: 300, image: 'https://tse4.mm.bing.net/th/id/OIP.uegpYOADdivIMbVt3aCtUwHaE0?rs=1&pid=ImgDetMain' },
-    { id: 9, title: 'Tutoring', description: 'Expert tutoring services for various subjects and levels.', price: 600, image: 'https://tse1.mm.bing.net/th/id/OIP.Czary5AeGciyjZ-q455hmwHaEc?rs=1&pid=ImgDetMain' },
+    { id: 9, title: 'Tutoring', description: 'Expert tutoring services for various subjects and levels.', price: 600, image: 'https://th.bing.com/th/id/OIP.oUsArir-NWmmjK1JLpdLUwHaE8?rs=1&pid=ImgDetMain' },
     { id: 10, title: 'Personal Care', description: 'Professional personal care services including grooming and wellness.', price: 800, image: 'https://tse3.mm.bing.net/th/id/OIP.t6fUPKF9G9WoP4Z6NXW5agHaE7?rs=1&pid=ImgDetMain' },
     { id: 11, title: 'Landscaping', description: 'Create beautiful outdoor spaces with expert landscaping services.', price: 250, image: 'https://tse2.mm.bing.net/th/id/OIP.EaZCNCVGcxakWMShtnUdxgHaEK?rs=1&pid=ImgDetMain' },
     { id: 12, title: 'Painting', description: 'Paint Your Homes Beautiful.', price: 250, image: 'https://tse3.mm.bing.net/th/id/OIP.-QUjwf8zVFykzb0VRdnwrQHaDt?rs=1&pid=ImgDetMain' },
