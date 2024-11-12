@@ -2,14 +2,46 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+
   constructor(private http: HttpClient) {}
 
+  private apiUrl = `http://localhost:9998/api/professionals`;
+
+  // Implement addServiceAgent method
+  addServiceAgent(newAgent: { available: boolean; location: string; profession_details: string; rating: null; total_bookings: number; user_id: string; zip: string; }): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/admin/service-agents`, newAgent);
+  }
+
+  // Implement deleteServiceAgent method
+  deleteServiceAgent(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/admin/service-agents/${id}`);
+  }
+
+  // Dashboard Stats
   getDashboardStats(): Observable<any> {
     return this.http.get(`${environment.apiUrl}/admin/dashboard-stats`);
+  }
+
+  // Listings
+  getAllListings(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/listings`);
+  }
+
+  addListing(listingData: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/listings`, listingData);
+  }
+
+  updateListing(id: string, listingData: any): Observable<any> {
+    return this.http.put(`${environment.apiUrl}/listings/${id}`, listingData);
+  }
+
+  deleteListing(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/listings/${id}`);
   }
 
   // Service Agents
@@ -47,4 +79,4 @@ export class AdminService {
   resolveIssue(id: string, resolution: string): Observable<any> {
     return this.http.put(`${environment.apiUrl}/admin/reported-issues/${id}`, { resolution });
   }
-} 
+}

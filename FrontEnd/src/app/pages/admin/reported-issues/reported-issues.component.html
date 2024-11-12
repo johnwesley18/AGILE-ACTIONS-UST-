@@ -37,30 +37,36 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>User ID</th>
-          <th>Service ID</th>
-          <th>Service Description</th>
+          <th>Provider ID</th>
+          <th>Rating</th>
+          <th>Review Text</th>
+          <th>Reported</th>
+          <th>Timestamp</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let issue of reportedIssues">
-          <td>{{issue.user_id}}</td>
-          <td>{{issue.service_id}}</td>
-          <td class="description-cell">{{issue.service_description}}</td>
+          <td>{{issue.id}}</td>
+          <td>{{issue.userId}}</td>
+          <td>{{issue.providerId}}</td>
+          <td>{{issue.rating}}</td>
+          <td class="description-cell">{{issue.reviewText}}</td>
+          <td>{{issue.reported}}</td>
+          <td>{{issue.timestamp | date:'medium'}}</td>
           <td class="actions-cell">
-            <button class="btn btn-edit" (click)="resolveIssue(issue._id)">
+            <button class="btn btn-edit" (click)="resolveIssue(issue.id)">
               Resolve
             </button>
-            <button class="btn btn-delete" (click)="dismissIssue(issue._id)">
+            <button class="btn btn-delete" (click)="dismissIssue(issue.id)">
               Dismiss
             </button>
           </td>
         </tr>
       </tbody>
     </table>
-
-    
   </div>
 
   <div class="loading-spinner" *ngIf="loading">

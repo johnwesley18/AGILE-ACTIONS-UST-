@@ -13,20 +13,6 @@ import { AdminService } from '../../../services/admin.service';
   ]
 })
 export class ServiceAgentsComponent implements OnInit {
-closeAddModal() {
-throw new Error('Method not implemented.');
-}
-newAgent: any;
-addAgent() {
-throw new Error('Method not implemented.');
-}
-showAddModal: any;
-openAddModal() {
-throw new Error('Method not implemented.');
-}
-deleteAgent(arg0: any) {
-throw new Error('Method not implemented.');
-}
 editAgent(arg0: any) {
 throw new Error('Method not implemented.');
 }
@@ -34,6 +20,17 @@ throw new Error('Method not implemented.');
   currentPage = 1;
   totalPages = 1;
   loading = false;
+
+  showAddModal = false; // Control for add modal visibility
+  newAgent = {
+    available: true,
+    location: '',
+    profession_details: '',
+    rating: null,
+    total_bookings: 0,
+    user_id: '',
+    zip: ''
+  };
 
   constructor(private adminService: AdminService) {}
 
@@ -56,14 +53,61 @@ throw new Error('Method not implemented.');
     });
   }
 
-  approveAgent(id: string) {
-    this.adminService.approveServiceAgent(id).subscribe({
-      next: () => {
-        this.loadServiceAgents();
-      },
-      error: (error) => {
-        console.error('Error approving agent:', error);
-      }
+  openAddModal() {
+    this.showAddModal = true;
+  }
+
+  closeAddModal() {
+    this.showAddModal = false;
+    this.resetNewAgent(); // Reset the form data when closing
+  }
+
+  resetNewAgent() {
+    this.newAgent = {
+      available: true,
+      location: '',
+      profession_details: '',
+      rating: null,
+      total_bookings: 0,
+      user_id: '',
+      zip: ''
+    };
+  }
+
+  addAgent() {
+    console.log(this.newAgent);
+    if (this.newAgent.location && this.newAgent.profession_details && this.newAgent.user_id && this.newAgent.zip) {
+      this.adminService.addServiceAgent(this.newAgent).subscribe({
+        next: () => {
+          this.loadServiceAgents();
+          this.closeAddModal();
+        },
+        error: (error: any) => {
+          console.error('Error adding new agent:', error);
+        }
+      });
+    } else {
+      alert('Please fill all required fields.');
+    }
+  }
+  deleteAgent(id: string): void {
+    this.adminService.deleteServiceAgent(id).subscribe({
+      next: () => this.loadServiceAgents(),
+      error: (error: Error) => console.error('Error deleting agent:', error)
     });
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadServiceAgents();
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadServiceAgents();
+    }
   }
 }

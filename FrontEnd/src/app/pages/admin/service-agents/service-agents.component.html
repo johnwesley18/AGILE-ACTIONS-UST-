@@ -1,62 +1,13 @@
-<button class="btn btn-add" (click)="openAddModal()">
-  Add New Service Agent
-</button>
 
-<!-- Add Service Agent Modal -->
-<div class="modal" *ngIf="showAddModal">
-  <div class="modal-content">
-    <h3>Add New Service Agent</h3>
-    <form (ngSubmit)="addAgent()">
-      <div class="form-group">
-        <label for="available">Available:</label>
-        <select id="available" [(ngModel)]="newAgent.available" name="available" required>
-          <option [ngValue]="true">Yes</option>
-          <option [ngValue]="false">No</option>
-        </select>
-      </div>
 
-      <div class="form-group">
-        <label for="location">Location:</label>
-        <input type="text" id="location" [(ngModel)]="newAgent.location" name="location" required>
-      </div>
-
-      <div class="form-group">
-        <label for="professionDetails">Profession Details:</label>
-        <textarea id="professionDetails" [(ngModel)]="newAgent.profession_details" name="profession_details" required></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="rating">Rating:</label>
-        <input type="number" id="rating" [(ngModel)]="newAgent.rating" name="rating" min="0" max="5" step="0.1" required>
-      </div>
-
-      <div class="form-group">
-        <label for="totalBookings">Total Bookings:</label>
-        <input type="number" id="totalBookings" [(ngModel)]="newAgent.total_bookings" name="total_bookings" min="0" required>
-      </div>
-
-      <div class="form-group">
-        <label for="userId">User ID:</label>
-        <input type="text" id="userId" [(ngModel)]="newAgent.user_id" name="user_id" required>
-      </div>
-
-      <div class="form-group">
-        <label for="zip">ZIP:</label>
-        <input type="text" id="zip" [(ngModel)]="newAgent.zip" name="zip" required>
-      </div>
-
-      <div class="modal-actions">
-        <button type="submit" class="btn btn-save">Save</button>
-        <button type="button" class="btn btn-cancel" (click)="closeAddModal()">Cancel</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="service-agents-container">
+<div class="agents-container">
   <h2>Service Agents Management</h2>
 
   <div class="agents-list" *ngIf="!loading">
+    <button class="btn btn-add" (click)="openAddModal()">
+      <i class="fas fa-plus"></i> Add New Service Agent
+    </button>
+
     <table>
       <thead>
         <tr>
@@ -91,7 +42,21 @@
       </tbody>
     </table>
 
-    
+    <div class="pagination">
+      <button 
+        [disabled]="currentPage === 1"
+        (click)="previousPage()"
+        class="btn btn-pagination">
+        Previous
+      </button>
+      <span>Page {{currentPage}} of {{totalPages}}</span>
+      <button 
+        [disabled]="currentPage === totalPages"
+        (click)="nextPage()"
+        class="btn btn-pagination">
+        Next
+      </button>
+    </div>
   </div>
 
   <div class="loading-spinner" *ngIf="loading">
@@ -100,7 +65,7 @@
 </div>
 
 <style>
-.service-agents-container {
+.agents-container {
   padding: 20px;
 }
 
@@ -183,5 +148,161 @@ tr:hover {
   padding: 20px;
   font-size: 18px;
   color: #666;
+}
+</style>
+<style>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+</style>
+
+<!-- Add Service Agent Modal -->
+<div class="modal" *ngIf="showAddModal">
+  <div class="modal-content">
+    <h3>Add New Service Agent</h3>
+    <form (ngSubmit)="addAgent()">
+      <div class="form-group">
+        <label for="available">Available:</label>
+        <select id="available" [(ngModel)]="newAgent.available" name="available" required>
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" [(ngModel)]="newAgent.location" name="location" required>
+      </div>
+
+      <div class="form-group">
+        <label for="profession_details">Profession Details:</label>
+        <textarea id="profession_details" [(ngModel)]="newAgent.profession_details" name="profession_details" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" [(ngModel)]="newAgent.rating" name="rating" min="0" max="5" step="0.1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="total_bookings">Total Bookings:</label>
+        <input type="number" id="total_bookings" [(ngModel)]="newAgent.total_bookings" name="total_bookings" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label for="user_id">User ID:</label>
+        <input type="text" id="user_id" [(ngModel)]="newAgent.user_id" name="user_id" required>
+      </div>
+
+      <div class="form-group">
+        <label for="zip">ZIP:</label>
+        <input type="text" id="zip" [(ngModel)]="newAgent.zip" name="zip" required>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="submit" class="btn btn-primary">Add Agent</button>
+        <button type="button" class="btn btn-secondary" (click)="closeAddModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  width: 80%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-add {
+  background-color: #28a745;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
+  padding: 10px 20px;
 }
 </style>

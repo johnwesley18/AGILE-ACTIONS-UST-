@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminService } from '../../../services/admin.service';
 import { OfferingServicesService } from '../../../services/offering-services.service';
 import { FormsModule } from '@angular/forms';
 
 interface Listing {
-  _id: number;
+  id: number;
   title: string;
   description: string;
   price: number;
@@ -20,22 +19,19 @@ interface Listing {
   imports: [CommonModule, FormsModule],
 })
 export class ListingComponent implements OnInit {
-openAddModal() {
-throw new Error('Method not implemented.');
-}
-closeAddModal() {
-throw new Error('Method not implemented.');
-}
-newListing: any;
-addListing() {
-throw new Error('Method not implemented.');
-}
-  
-  listings: any[] = [];
+  listings: Listing[] = [];
+  newListing: Listing = {
+    id: 0,
+    title: '',
+    description: '',
+    price: 0,
+    image_url: '',
+    user_id: ''
+  };
+  showAddModal: boolean = false;
   currentPage = 1;
   totalPages = 1;
   loading = false;
-showAddModal: any;
 
   constructor(private adminService: OfferingServicesService) {}
 
@@ -47,12 +43,33 @@ showAddModal: any;
     this.loading = true;
     this.adminService.getAllServices().subscribe({
       next: (response) => {
+        console.log(response);
         this.listings = response;
         this.loading = false;
       },
       error: (error) => {
         console.error('Error loading listings:', error);
         this.loading = false;
+      },
+    });
+  }
+
+  openAddModal() {
+    this.showAddModal = true;
+  }
+
+  closeAddModal() {
+    this.showAddModal = false;
+  }
+  addListing() {
+    this.adminService.addNewService(this.newListing).subscribe({
+      next: (response) => {
+        this.loadListings(); // Reload listings to include the new listing
+        this.newListing = { id: 0, title: '', description: '', price: 0, image_url: '', user_id: '' }; // Reset form
+        this.closeAddModal();
+      },
+      error: (error: Error) => {
+        console.error('Error adding listing:', error);
       },
     });
   }
@@ -70,15 +87,14 @@ showAddModal: any;
     }
   }
 
-  editListing(id:number) {
-    this.adminService.editServiceById(id,{}).subscribe({
+  editListing(id: number) {
+    this.adminService.editServiceById(id, {}).subscribe({
       next: (service) => {
-        // Navigate to edit page or open edit modal
         console.log('Edit service:', service);
       },
       error: (error) => {
         console.error('Error getting service details:', error);
-      }
+      },
     });
   }
 

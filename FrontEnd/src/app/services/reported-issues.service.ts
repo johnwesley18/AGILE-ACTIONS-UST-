@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ReportedIssuesService {
-  private apiUrl = 'http://localhost:3000/api/reported-issues';
+  private apiUrl = 'http://localhost:8689/api/reviews';
 
   constructor(private http: HttpClient) { }
 
@@ -37,11 +37,11 @@ export class ReportedIssuesService {
 
   // Dismiss a reported issue
   dismissIssue(id: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}/dismiss`, {});
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   // Resolve a reported issue
   resolveIssue(id: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}/resolve`, {});
+    return this.http.put(`${this.apiUrl}/resolve/${id}`, {});
   }
 }

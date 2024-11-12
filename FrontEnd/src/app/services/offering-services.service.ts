@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OfferingServicesService {
-
-  private apiUrl="http://localhost:9099/services"
+  private apiUrl = "http://localhost:9099/services";
   constructor(private http:HttpClient) { }
 
   getAllServices():Observable<any>{
