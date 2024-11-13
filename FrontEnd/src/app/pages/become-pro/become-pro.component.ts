@@ -121,12 +121,18 @@ export class BecomeProComponent {
   files: File[] = [];
   isDragging = false;
   professionOptions = [
-    'Cleaning',
-    'Maintenance',
-    'Landscaping',
-    'Personal Care',
-    'Home Improvement',
-    'Professional Services'
+    'Home Cleaning',
+     'Furniture Assembly',
+     'Plumbing Service',
+     'Electrical Service',
+     'Smart Home Service',
+    'Moving Service',
+     'Tutoring',
+     'Landscaping',
+     'Home Repair',
+     'Home Renovation',
+     'Personal Care',
+     'Painting',
   ];
 
   constructor(private fb: FormBuilder) {}

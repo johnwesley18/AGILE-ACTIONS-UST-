@@ -1,10 +1,21 @@
-<div class="container">
-    <div class="content">
-      <h1>Welcome!</h1>
-      <p>Please choose an option below:</p>
-  
-      <button class="btn btn-signup" (click)="navigateToSignup()">Sign Up</button>
-      <button class="btn btn-login" (click)="navigateToLogin()">Login</button>
+<div class="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center px-4">
+  <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12 w-full max-w-md transform transition-all hover:scale-105">
+    <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">Welcome!</h1>
+    <p class="text-lg text-gray-600 mb-8 text-center">Please choose an option below:</p>
+
+    <div class="space-y-4">
+      <button 
+        (click)="navigateToSignup()" 
+        class="w-full py-3 px-6 text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg text-lg font-semibold transition-all hover:from-blue-600 hover:to-blue-700 hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+      >
+        Sign Up
+      </button>
+      <button 
+        (click)="navigateToLogin()" 
+        class="w-full py-3 px-6 text-white bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg text-lg font-semibold transition-all hover:from-purple-600 hover:to-purple-700 hover:shadow-lg focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+      >
+        Login
+      </button>
     </div>
   </div>
-  
+</div>

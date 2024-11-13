@@ -1,46 +1,98 @@
-<div class="service-detail-container">
-  <h2 class="service-title">{{ serviceDetail.title }}</h2>
-  <img class="service-detail-image" [src]="serviceDetail.image" alt="{{ serviceDetail.title }}">
-  <p class="service-description">{{ serviceDetail.description }}</p>
-  <p class="service-price">Price: {{ serviceDetail.price | currency }}</p>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-6 md:p-12">
+  <div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+    <h2 class="text-4xl font-bold text-gray-800 mb-6">{{ serviceDetail.title }}</h2>
+    
+    <div class="flex flex-col md:flex-row gap-8">
+      <!-- Left side - Service Details -->
+      <div class="w-full md:w-1/2">
+        <div class="relative h-96 mb-8 rounded-xl overflow-hidden">
+          <img class="w-full h-full object-cover transform transition hover:scale-105" [src]="serviceDetail.image" alt="{{ serviceDetail.title }}">
+        </div>
+        
+        <p class="text-lg text-gray-600 mb-4">{{ serviceDetail.description }}</p>
+        <p class="text-2xl font-semibold text-indigo-600 mb-8">{{ serviceDetail.price | currency }}</p>
 
-  <h3>Book this service</h3>
-  <div class="order-form">
-    <label for="serviceName">Service Name:</label>
-    <input class="service-input" id="serviceName" type="text" [(ngModel)]="serviceName" placeholder="Enter service name">
+        <!-- Reviews Section -->
+        <div class="mt-8">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Reviews</h3>
+          <div *ngIf="reviews.length === 0" class="text-gray-500 text-center py-8">No reviews available for this service.</div>
+          <div class="space-y-6">
+            <div *ngFor="let review of visibleReviews" class="bg-gray-50 rounded-xl p-6 transform transition hover:shadow-md">
+              <div class="flex items-center mb-2">
+                <span class="font-semibold text-gray-800">{{ review.username }}</span>
+                <div class="ml-4 text-yellow-400">
+                  <span *ngFor="let star of getStars(review.rating)">⭐</span>
+                  <span *ngFor="let emptyStar of getEmptyStars(review.rating)" class="text-gray-300">☆</span>
+                </div>
+              </div>
+              <p class="text-gray-600">{{ review.description }}</p>
+            </div>
+          </div>
 
-    <label for="serviceDate">Select Date:</label>
-    <input class="date-input" id="serviceDate" type="date" [(ngModel)]="serviceDate">
-
-    <label for="timeSlot">Select Time Slot:</label>
-    <select class="slot-input" id="timeSlot" [(ngModel)]="selectedSlot">
-      <option value="">Select a time slot</option>
-      <option *ngFor="let slot of timeSlots" [value]="slot">{{slot}}</option>
-    </select>
-
-    <label for="orderQuantity">Quantity:</label>
-    <input class="quantity-input" id="orderQuantity" type="number" [(ngModel)]="orderQuantity" min="1" placeholder="Quantity">
-
-    <button class="order-btn" (click)="placeOrder()">Place Order</button>
-  </div>
-
-  <!-- Reviews Section -->
-  <div class="service-reviews">
-    <h3>Reviews:</h3>
-    <div *ngIf="reviews.length === 0" class="no-reviews">No reviews available for this service.</div>
-    <div *ngFor="let review of visibleReviews" class="review">
-      <p><strong>{{ review.username }}</strong> (Rating: {{ review.rating }}): {{ review.description }}</p>
-      <div class="stars">
-        <span *ngFor="let star of getStars(review.rating)">⭐</span>
-        <span *ngFor="let emptyStar of getEmptyStars(review.rating)">☆</span>
+          <div *ngIf="reviews.length > 3" class="text-center mt-8">
+            <button 
+              (click)="toggleReviews()" 
+              class="inline-flex items-center px-6 py-3 border border-indigo-500 text-indigo-500 rounded-lg hover:bg-indigo-50 transition-colors">
+              {{ showAllReviews ? 'See Less' : 'See More' }}
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- "See More" Button -->
-    <div *ngIf="reviews.length > 3" class="see-more">
-      <button (click)="toggleReviews()" class="see-more-btn">
-        {{ showAllReviews ? 'See Less' : 'See More' }}
-      </button>
+      <!-- Right side - Booking Form -->
+      <div class="w-full md:w-1/2">
+        <div class="bg-gray-50 rounded-xl p-6">
+          <h3 class="text-2xl font-bold text-gray-800 mb-6">Book this service</h3>
+          <div class="space-y-6">
+            <div class="flex flex-col">
+              <label for="serviceName" class="text-sm font-medium text-gray-700 mb-2">Service Name</label>
+              <input 
+                class="rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-3 transition"
+                id="serviceName" 
+                type="text" 
+                [(ngModel)]="serviceName" 
+                placeholder="Enter service name">
+            </div>
+
+            <div class="flex flex-col">
+              <label for="serviceDate" class="text-sm font-medium text-gray-700 mb-2">Select Date</label>
+              <input 
+                class="rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-3 transition"
+                id="serviceDate" 
+                type="date" 
+                [(ngModel)]="serviceDate">
+            </div>
+
+            <div class="flex flex-col">
+              <label for="timeSlot" class="text-sm font-medium text-gray-700 mb-2">Select Time Slot</label>
+              <select 
+                class="rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-3 transition"
+                id="timeSlot" 
+                [(ngModel)]="selectedSlot">
+                <option value="">Select a time slot</option>
+                <option *ngFor="let slot of timeSlots" [value]="slot">{{slot}}</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col">
+              <label for="orderQuantity" class="text-sm font-medium text-gray-700 mb-2">Quantity</label>
+              <input 
+                class="rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full p-3 transition"
+                id="orderQuantity" 
+                type="number" 
+                [(ngModel)]="orderQuantity" 
+                min="1" 
+                placeholder="Quantity">
+            </div>
+
+            <button 
+              class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-lg transform transition-all hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              (click)="placeOrder()">
+              Place Order
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

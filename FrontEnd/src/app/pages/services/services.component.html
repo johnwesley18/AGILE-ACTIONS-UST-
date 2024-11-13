@@ -11,7 +11,7 @@
             <h4>Categories</h4>
             <ul>
                 <li *ngFor="let category of categories">
-                    <a [href]="category.link">{{ category.name }}</a>
+                    <a [routerLink]="[category.link]">{{ category.name }}</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
                 </div>
             </div>
   
-            Cleaning Services Section
+            <!-- Cleaning Services Section -->
             <h4 id="cleaning">Cleaning Services</h4>
             <div class="card-grid">
                 <div class="card" *ngFor="let service of cleaningServices" (click)="viewServiceDetail(service)">
@@ -43,5 +43,4 @@
             </div>
         </div>
     </div>
-  </div>
-  
+</div>
