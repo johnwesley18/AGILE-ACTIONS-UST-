@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class Mail {
     private String userEmail;
     private String serviceName;
-    private String slot;
+    private LocalDate slot;
     private LocalDate time;
     private double amountPaid;
 

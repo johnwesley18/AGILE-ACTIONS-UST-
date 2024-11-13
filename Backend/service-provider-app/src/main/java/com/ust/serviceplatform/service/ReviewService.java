@@ -52,7 +52,6 @@ public class ReviewService {
       review.getId(),
       review.getUser().getId(),
       review.getUser().getUsername(),
-      review.getProfessional().getId(),
       review.getService().getId(),
       review.getRating(),
       review.getDescription()

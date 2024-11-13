@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,7 @@ public class BookingService {
     }
 
     // Save a new booking and send confirmation email
-    public Booking saveBooking(Booking booking, String userEmail, String serviceName, String slot, double amountPaid) {
+    public Booking saveBooking(Booking booking, String userEmail, String serviceName, LocalDate slot, double amountPaid) {
         Booking savedBooking = bookingRepository.save(booking);
 
         // Format the booking time

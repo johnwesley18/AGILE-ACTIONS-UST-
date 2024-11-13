@@ -1,6 +1,5 @@
 package com.project.MailService.Service;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,12 +15,26 @@ public class MailService {
 
     public void sendBookingConfirmation(Mail mail) {
         SimpleMailMessage message = new SimpleMailMessage();
+        
         message.setTo(mail.getUserEmail());
-        message.setSubject("Booking Confirmation: " + mail.getServiceName());
-        message.setText("Thank you for booking " + mail.getServiceName() + "\n"
-                        + "Slot: " + mail.getSlot() + "\n"
-                        + "Time: " + mail.getTime() + "\n"
-                        + "Amount Paid: $" + mail.getAmountPaid());
+        message.setSubject("Your Booking Confirmation - AgileAction");
+
+        // Constructing the message content
+        String content = "Dear Customer,\n\n"
+                + "Thank you for booking with AgileAction. We are pleased to confirm your reservation details below:\n\n"
+                + "Service: " + mail.getServiceName() + "\n"
+                + "Date and Time: " + mail.getTime() + "\n"
+                + "Slot: " + mail.getSlot() + "\n"
+                + "Amount Paid: $" + mail.getAmountPaid() + "\n\n"
+                + "Please retain this email for your records.\n\n"
+                + "If you have any questions or need to make changes to your booking, feel free to contact us at support@agileaction.com.\n\n"
+                + "Thank you for choosing AgileAction. We look forward to serving you.\n\n"
+                + "Best regards,\n"
+                + "The AgileAction Team\n"
+                + "www.agileaction.com";
+
+        message.setText(content);
+
         javaMailSender.send(message);
     }
 }

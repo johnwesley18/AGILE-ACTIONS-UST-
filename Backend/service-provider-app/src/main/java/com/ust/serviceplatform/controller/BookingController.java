@@ -66,6 +66,7 @@ public class BookingController {
   public ResponseEntity<?> saveBooking(@RequestBody Booking booking) throws Exception {
 	  System.out.println(booking);
 	  Booking order = bookingService.saveBooking(booking);
+	  System.out.println(order);
       TransactionPojo pojo=new TransactionPojo();
       pojo.setAmount((double)order.getPrice()*100);
       pojo.setUserId(order.getUserId());
@@ -75,9 +76,9 @@ public class BookingController {
       objects.put("transaction", transaction);
       Mail mailObject=new Mail();
       mailObject.setAmountPaid(order.getPrice());
-//      mailObject.setSlot(order.getBookingTime());
+      mailObject.setSlot(order.getBookingTime());
       mailObject.setTime(order.getBookingTime());
-//      mailObject.setServiceName(serviceRepository.findById(order.getServiceId()).get().getTitle());
+      mailObject.setServiceName(serviceRepository.findById(booking.getServiceId()).get().getTitle());
 //      System.out.println(serviceRepository.findById(order.getServiceId()).get().getTitle());
       mailObject.setUserEmail(userRepository.findById(order.getUserId()).get().getUsername());
       mailClient.sendBookingConfirmation(mailObject);

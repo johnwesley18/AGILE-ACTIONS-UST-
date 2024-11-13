@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public class BookingController {
             @RequestBody Booking booking,
             @RequestParam String userEmail,
             @RequestParam String serviceName,
-            @RequestParam String slot,
+            @RequestParam LocalDate slot,
             @RequestParam double amountPaid) {
 
         Booking savedBooking = bookingService.saveBooking(booking, userEmail, serviceName, slot, amountPaid);

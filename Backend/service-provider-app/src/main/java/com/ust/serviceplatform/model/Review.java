@@ -14,9 +14,9 @@ public class Review {
   @JoinColumn(name = "user_id", nullable = false)
   private Users user;
 
-  @ManyToOne
-  @JoinColumn(name = "professional_id", nullable = false)
-  private Professional professional;
+//  @ManyToOne
+//  @JoinColumn(name = "professional_id", nullable = false)
+//  private Professional professional;
 
   @ManyToOne
   @JoinColumn(name = "service_id", nullable = false)

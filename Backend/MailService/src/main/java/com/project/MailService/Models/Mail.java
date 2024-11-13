@@ -1,14 +1,16 @@
 package com.project.MailService.Models;
 
+import java.time.LocalDate;
+
 public class Mail {
     private String userEmail;
     private String serviceName;
-    private String slot;
+    private LocalDate slot;
     private String time;
     private double amountPaid;
 
     // Constructor
-    public Mail(String userEmail, String serviceName, String slot, String time, double amountPaid) {
+    public Mail(String userEmail, String serviceName, LocalDate slot, String time, double amountPaid) {
         this.userEmail = userEmail;
         this.serviceName = serviceName;
         this.slot = slot;
@@ -33,11 +35,11 @@ public class Mail {
         this.serviceName = serviceName;
     }
 
-    public String getSlot() {
+    public LocalDate getSlot() {
         return slot;
     }
 
-    public void setSlot(String slot) {
+    public void setSlot(LocalDate slot) {
         this.slot = slot;
     }
 
