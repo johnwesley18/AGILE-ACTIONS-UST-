@@ -1,14 +1,25 @@
 package com.ust.serviceplatform.controller;
 
 
-import com.ust.serviceplatform.model.Professional;
-import com.ust.serviceplatform.service.ProfessionalService;
-import lombok.RequiredArgsConstructor;
-/*import org.springframework.security.access.prepost.PreAuthorize;*/
-import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
+
+/*import org.springframework.security.access.prepost.PreAuthorize;*/
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.serviceplatform.model.Professional;
+import com.ust.serviceplatform.repository.ProfessionalRepository;
+import com.ust.serviceplatform.service.ProfessionalService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/professionals")
@@ -17,6 +28,8 @@ import java.util.Set;
 public class ProfessionalController {
 
   private final ProfessionalService professionalService;
+  
+  private final ProfessionalRepository professionalRepository;
 
   @PostMapping("/register/{userId}")
 /*
@@ -28,6 +41,11 @@ public class ProfessionalController {
     return professionalService.registerAsProfessional(userId,professionalDetails,professionalDetails.getLocation());
   }
 
+  @GetMapping
+  public List<Professional> getAllProfessionals(){
+	  return professionalRepository.findAll();
+  }
+  
   @GetMapping("/{userId}")
   public  Professional getProfessionalByUserId(@PathVariable long userId){
     return  professionalService.getProfessionalByUserId(userId);
