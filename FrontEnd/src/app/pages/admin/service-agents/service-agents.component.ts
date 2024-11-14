@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../services/admin.service';
+import { ProfessionalService } from '../../../services/professional.service';
 
 @Component({
   selector: 'app-service-agents',
@@ -32,7 +33,7 @@ throw new Error('Method not implemented.');
     zip: ''
   };
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService,private professionalService: ProfessionalService) {}
 
   ngOnInit() {
     this.loadServiceAgents();
@@ -40,17 +41,11 @@ throw new Error('Method not implemented.');
 
   loadServiceAgents() {
     this.loading = true;
-    this.adminService.getServiceAgents(this.currentPage).subscribe({
-      next: (response) => {
-        this.serviceAgents = response.data;
-        this.totalPages = response.totalPages;
-        this.loading = false;
-      },
-      error: (error) => {
-        console.error('Error loading service agents:', error);
-        this.loading = false;
-      }
-    });
+    this.professionalService.getAllProfessionals().subscribe((data) => {
+      this.serviceAgents = data;
+      this.loading = false;
+    }); 
+
   }
 
   openAddModal() {

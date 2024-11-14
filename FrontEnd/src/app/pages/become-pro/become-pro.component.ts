@@ -1,28 +1,40 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { QuoteCardComponent } from '../../components/quote-card/quote-card.component';
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ProfessionalService } from '../../services/professional.service';
 @Component({
   selector: 'app-become-pro',
   templateUrl: './become-pro.component.html',
   styleUrls: ['./become-pro.component.css'],
   standalone: true,
-  imports: [FormsModule, QuoteCardComponent, NgFor, CommonModule,ReactiveFormsModule]
+  imports: [
+    FormsModule,
+    QuoteCardComponent,
+    NgFor,
+    CommonModule,
+    ReactiveFormsModule,
+  ],
 })
 export class BecomeProComponent {
-
   @ViewChild('fileInput') fileInput!: ElementRef;
-  
+
   // user = {
   //   professionDetails: '', // Updated to reflect current form structure
   //   location: '',
   //   zip: ''
   // };
-  
+
   // professionOptions = [
   //   'Home Cleaning',
   //   'Furniture Assembly',
@@ -97,55 +109,38 @@ export class BecomeProComponent {
 
   // constructor(private httpClient: HttpClient, private authService: AuthService,private router:Router) {}
 
-  // onSubmit() {
-  //   const userId = this.authService.getUserId();
-  //   if (userId) {
-  //     const apiUrl = `http://localhost:9099/api/professionals/register/${userId}`; // Append userId to the URL
-
-  //     this.httpClient.post(apiUrl, this.user).subscribe(
-  //       (response) => {
-  //         console.log('Provider applied successfully', response);
-  //         alert("Application Submitted Successfully!");
-  //       },
-  //       (error) => {
-  //         console.error('Error occurred during application', error);
-  //         alert("Application Failed! Please try again after registration or  Loging in");
-  //         this.router.navigate(['/auth'])
-  //       }
-  //     );
-  //   } else {
-  //     alert("User ID not found. Please log in.");
-  //   }
-  // }
-  serviceForm: FormGroup=new FormGroup({});
+  serviceForm: FormGroup = new FormGroup({});
   files: File[] = [];
   isDragging = false;
   professionOptions = [
     'Home Cleaning',
-     'Furniture Assembly',
-     'Plumbing Service',
-     'Electrical Service',
-     'Smart Home Service',
+    'Furniture Assembly',
+    'Plumbing Service',
+    'Electrical Service',
+    'Smart Home Service',
     'Moving Service',
-     'Tutoring',
-     'Landscaping',
-     'Home Repair',
-     'Home Renovation',
-     'Personal Care',
-     'Painting',
+    'Tutoring',
+    'Landscaping',
+    'Home Repair',
+    'Home Renovation',
+    'Personal Care',
+    'Painting',
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private professionalService: ProfessionalService
+  ) {}
 
   ngOnInit() {
     this.serviceForm = this.fb.group({
       location: ['', Validators.required],
-      zip: ['', [Validators.required, Validators.pattern('^[0-9]{5}(?:-[0-9]{4})?$')]],
+      zip: ['', Validators.required],
       title: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(50)]],
       description: ['', [Validators.required, Validators.minLength(50)]],
       profession: ['', Validators.required],
-      image_url:['',Validators.required]
+      image_url: ['', Validators.required],
     });
   }
 
@@ -177,23 +172,43 @@ export class BecomeProComponent {
   }
 
   onSubmit() {
+    console.log(this.serviceForm.value);
+    console.log(this.serviceForm);
     if (this.serviceForm.valid) {
       const formData = new FormData();
-      Object.keys(this.serviceForm.value).forEach(key => {
+      Object.keys(this.serviceForm.value).forEach((key) => {
         formData.append(key, this.serviceForm.value[key]);
       });
-      this.files.forEach(file => {
+      this.files.forEach((file) => {
         formData.append('files', file);
       });
       // Handle form submission here
       console.log('Form Data:', formData);
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        this.professionalService
+          .registerProfessional(this.serviceForm.value)
+          .subscribe({
+            next: (response) => {
+              console.log('Provider applied successfully', response);
+              alert('Application Submitted Successfully!');
+            },
+            error: (error) => {
+              alert(
+                'Application Failed! Please try again after registration or  Loging in'
+              );
+            },
+          });
+      } else {
+        alert('User ID not found. Please log in.');
+      }
     } else {
       this.markFormGroupTouched(this.serviceForm);
     }
   }
 
   private markFormGroupTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => {
+    Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);

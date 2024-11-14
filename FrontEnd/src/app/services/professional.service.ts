@@ -11,6 +11,17 @@ export class ProfessionalService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+  getAllProfessionals(): Observable<any> {
+    const apiUrl = `${this.baseUrl}`;
+    return this.http.get(apiUrl);
+  }
+
+  registerProfessional(professional: any): Observable<any> {
+    const userId = localStorage.getItem('userId');
+    const apiUrl = `${this.baseUrl}/register/${userId}`;
+    return this.http.post(apiUrl, professional);
+  }
+
   updateSchedule(availableSlots: Set<string>): Observable<any> {
     const userId = this.authService.getProfessionalId();
     const apiUrl = `${this.baseUrl}/${userId}/schedule`;

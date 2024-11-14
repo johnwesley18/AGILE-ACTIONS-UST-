@@ -4,10 +4,6 @@
   <h2>Service Agents Management</h2>
 
   <div class="agents-list" *ngIf="!loading">
-    <button class="btn btn-add" (click)="openAddModal()">
-      <i class="fas fa-plus"></i> Add New Service Agent
-    </button>
-
     <table>
       <thead>
         <tr>
@@ -28,12 +24,12 @@
           <td class="description-cell">{{agent.profession_details}}</td>
           <td>{{agent.rating}}</td>
           <td>{{agent.total_bookings}}</td>
-          <td>{{agent.user_id}}</td>
+          <td>{{agent.user.id}}</td>
           <td>{{agent.zip}}</td>
           <td class="actions-cell">
-            <button class="btn btn-edit" (click)="editAgent(agent._id)">
+            <!-- <button class="btn btn-edit" (click)="editAgent(agent._id)">
               Edit
-            </button>
+            </button> -->
             <button class="btn btn-delete" (click)="deleteAgent(agent._id)">
               Delete
             </button>
@@ -296,13 +292,5 @@ tr:hover {
 .btn-secondary {
   background-color: #6c757d;
   color: white;
-}
-
-.btn-add {
-  background-color: #28a745;
-  color: white;
-  margin-bottom: 20px;
-  font-size: 16px;
-  padding: 10px 20px;
 }
 </style>

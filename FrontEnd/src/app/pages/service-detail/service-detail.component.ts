@@ -59,6 +59,7 @@ export class ServiceDetailComponent {
     '02:00 PM - 04:00 PM',
     '04:00 PM - 06:00 PM'
   ];
+serviceLocation: any;
 
   constructor(
     private route: ActivatedRoute,
