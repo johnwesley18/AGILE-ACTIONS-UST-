@@ -148,53 +148,19 @@
         </div>
       </div>
 
-      <label> NSDC Professional Certificate</label>
-      <!-- <div class="file-upload-container" 
-           (dragover)="onDragOver($event)" 
-           (drop)="onDrop($event)">
+      
+      <div class="input-group">
+        <label for="nsdc">NSDC FILE Url</label>
         <input 
-          type="file" 
-          class="file-input" 
-          (change)="onFileChange($event)" 
-          accept="image/*,.pdf" 
-          multiple>
-        <div class="upload-content">
-          <i class="upload-icon"></i>
-          <p>Drag and drop files here or click to upload</p>
-          <span class="file-types">Accepted formats: Images, PDF</span>
+          id="nsdc_file"
+          formControlName="certificate"
+          placeholder="NSDC File Url"
+          [class.is-invalid]="serviceForm.get('nsdc_file')?.invalid && serviceForm.get('nsdc_file')?.touched" />
+        
+        <div class="error-message" *ngIf="serviceForm.get('nsdc_file')?.invalid && serviceForm.get('nsdc_file')?.touched">
+         NSDC FILE url is required
         </div>
-        <div class="file-list" *ngIf="files.length > 0">
-          <div class="file-item" *ngFor="let file of files">
-            {{ file.name }}
-          </div>
-        </div>
-      </div> -->
-
-      <div 
-  class="file-upload-container" 
-  (dragover)="onDragOver($event)" 
-  (drop)="onDrop($event)" 
-  (click)="triggerFileInput()">
-  <input 
-    type="file" 
-    #fileInput 
-    class="file-input" 
-    (change)="onFileChange($event)" 
-    accept="image/*,.pdf" 
-    multiple 
-    style="display: none;">
-  <div class="upload-content">
-    <i class="upload-icon"></i>
-    <p>Drag and drop files here or click to upload</p>
-    <span class="file-types">Accepted formats: Images, PDF</span>
-  </div>
-  <div class="file-list" *ngIf="files.length > 0">
-    <div class="file-item" *ngFor="let file of files">
-      {{ file.name }}
-    </div>
-  </div>
-</div>
-
+      </div>
 
       <button type="submit" class="btn-submit" [disabled]="serviceForm.invalid">
         Submit Application

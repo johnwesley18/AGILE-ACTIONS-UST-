@@ -1,5 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar {
@@ -7,47 +9,49 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f3f4f6; /* Light background for navbar */
+  background-color: #f3f4f6;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  flex-wrap: wrap;
 }
 
 .navbar-left {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
   font-family: 'Arial', sans-serif;
   font-weight: bold;
-  font-size: 24px;
-  letter-spacing: -1px; /* Changed from // to /* for comment */
+  font-size: clamp(18px, 4vw, 24px);
+  letter-spacing: -1px;
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
   
-  /* Gradient effect */
   background: linear-gradient(45deg, #2196f3, #38011f);
   -webkit-background-clip: text;
-  background-clip: text; /* Added for better browser compatibility */
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Moved hover and animation outside the .logo class since CSS doesn't support nesting without preprocessors */
 .logo:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   text-shadow: 2px 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 .all-services {
-  font-size: 16px;
+  font-size: clamp(14px, 3vw, 16px);
   font-weight: bold;
   color: #333;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 8px 16px;
   border-radius: 0.8rem;
   transition: box-shadow 0.3s, background-color 0.3s;
   background-color: #e0e0e0;
+  white-space: nowrap;
 }
 
 .all-services:hover {
@@ -59,16 +63,18 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .nav-option {
   position: relative;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 16px;
+  font-size: clamp(14px, 3vw, 16px);
   color: #333;
   text-decoration: none;
   border-radius: 0.5rem;
   transition: transform 0.2s, background-color 0.3s;
+  white-space: nowrap;
 }
 
 .nav-option:hover {
@@ -76,7 +82,6 @@ body {
   background-color: #f0f0f0;
 }
 
-/* Add icons with CSS pseudo-elements */
 .nav-option::before {
   content: '';
   display: inline-block;
@@ -88,28 +93,26 @@ body {
   background-repeat: no-repeat;
 }
 
-/* Specific icons for each link */
 #become-pro::before {
-  content: '👤'; /* User icon */
+  content: '👤';
 }
 
 #dashboard::before {
-  content: '📊'; /* Dashboard icon */
+  content: '📊';
 }
 
 #help::before {
-  content: '❓'; /* Help icon */
+  content: '❓';
 }
 
 #cart::before {
-  content: '🛒'; /* Cart icon */
+  content: '🛒';
 }
 
 #log-in::before {
-  content: '🔑'; /* Login/logout icon */
+  content: '🔑';
 }
 
-/* Style for the login/logout button */
 #log-in {
   background-color: #007bff;
   color: white;
@@ -121,4 +124,51 @@ body {
 #log-in:hover {
   background-color: #0056b3;
   transform: scale(1.05);
+}
+
+/* Mobile responsive styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .navbar-left, .navbar-right {
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+
+  .nav-option {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .nav-option::before {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 480px) {
+  .navbar-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-option {
+    text-align: center;
+  }
+
+  #log-in {
+    width: 100%;
+  }
 }

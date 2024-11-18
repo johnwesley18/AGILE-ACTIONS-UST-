@@ -1,0 +1,171 @@
+<div class="refunds-container">
+  <h2>Refund Requests</h2>
+
+  <div class="refunds-list">
+    <table *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Amount</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let refund of refunds"
+          (click)="openEditModal(refund)"
+          class="clickable-row"
+        >
+          <td>{{ refund.orderid }}</td>
+          <td>₹{{ refund.amount }}</td>
+          <td class="description-cell">{{ refund.reason }}</td>
+          <td>{{ refund.status }}</td>
+          <td>{{refund.action}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="loading-spinner" *ngIf="loading">Loading...</div>
+  </div>
+</div>
+
+<!-- Edit Refund Modal -->
+<div class="modal" *ngIf="showEditModal">
+  <div class="modal-content">
+    <h3>Edit Refund Status</h3>
+    <p><strong>Order ID:</strong> {{ selectedRefund?.orderid }}</p>
+    <p><strong>Current Status:</strong> {{ selectedRefund?.status }}</p>
+
+    <button
+      class="btn btn-save"
+      (click)="updateStatus()"
+    >
+      Change Status to
+      {{ selectedRefund?.status === 'paid' ? 'Unpaid' : 'Paid' }}
+    </button>
+    <button class="btn btn-cancel" (click)="closeEditModal()">Cancel</button>
+  </div>
+</div>
+
+<style>
+  .refunds-container {
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+  }
+  
+  tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .description-cell {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .actions-cell {
+    white-space: nowrap;
+  }
+  
+  .btn {
+    padding: 6px 12px;
+    margin: 0 4px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-edit {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .btn-delete {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-pagination {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .loading-spinner {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+  }
+  </style>
+  <style>
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  </style>

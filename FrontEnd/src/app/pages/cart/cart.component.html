@@ -7,7 +7,6 @@
       <p>Price: {{ booking.price }}</p>
       <button (click)="openReviewModal(booking)">Add Review</button>
 
-      <!-- Review Modal -->
       <div *ngIf="booking.showReviewModal">
         <h3>Add a Review</h3>
         <form (ngSubmit)="submitReview(booking)">
@@ -20,6 +19,31 @@
           <button type="submit">Submit Review</button>
           <button type="button" (click)="closeReviewModal(booking)">Cancel</button>
         </form>
+      </div>
+
+      <!-- Dropdown Menu -->
+      <div class="dropdown" style="float:right;">
+        <button class="dropbtn">Actions</button>
+        <div class="dropdown-content">
+          <button (click)="openModal('Raise Ticket', booking)">Raise Ticket</button>
+          <button (click)="openModal('Refund Request', booking)">Refund Request</button>
+          <button (click)="openModal('Rework Request', booking)">Rework Request</button>
+          <button (click)="openModal('Report Issue', booking)">Report Issue</button>
+        </div>
+      </div>
+      <button (click)="done(booking)">Done</button>
+
+      <!-- Modal for Actions -->
+      <div *ngIf="booking.modalVisible" class="modal">
+        <div class="modal-content">
+          <h3>{{ booking.currentAction }}</h3>
+          <p>Provide a description for your request:</p>
+          <textarea [(ngModel)]="booking.modalDescription" placeholder="Enter description"></textarea>
+          <div class="modal-actions">
+            <button (click)="submitModalAction(booking)">OK</button>
+            <button (click)="closeModal(booking)">Cancel</button>
+          </div>
+        </div>
       </div>
     </li>
   </ul>

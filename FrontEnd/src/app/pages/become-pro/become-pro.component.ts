@@ -10,9 +10,9 @@ import { QuoteCardComponent } from '../../components/quote-card/quote-card.compo
 import { NgFor } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { ProfessionalService } from '../../services/professional.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-become-pro',
   templateUrl: './become-pro.component.html',
@@ -112,6 +112,7 @@ export class BecomeProComponent {
   serviceForm: FormGroup = new FormGroup({});
   files: File[] = [];
   isDragging = false;
+  isSubmitting = false;
   professionOptions = [
     'Home Cleaning',
     'Furniture Assembly',
@@ -126,6 +127,7 @@ export class BecomeProComponent {
     'Personal Care',
     'Painting',
   ];
+  private readonly apiUrl = 'http://localhost:9099/api/service-providers';
 
   constructor(
     private fb: FormBuilder,
@@ -143,34 +145,6 @@ export class BecomeProComponent {
       image_url: ['', Validators.required],
     });
   }
-
-  onFileChange(event: any) {
-    const files = event.target.files;
-    this.files = Array.from(files);
-  }
-
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragging = true;
-  }
-
-  onDragLeave(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragging = false;
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isDragging = false;
-    const files = event.dataTransfer?.files;
-    if (files) {
-      this.files = Array.from(files);
-    }
-  }
-
   onSubmit() {
     console.log(this.serviceForm.value);
     console.log(this.serviceForm);
@@ -204,6 +178,7 @@ export class BecomeProComponent {
       }
     } else {
       this.markFormGroupTouched(this.serviceForm);
+      alert('Please fill in all required fields correctly.');
     }
   }
 
@@ -216,7 +191,9 @@ export class BecomeProComponent {
     });
   }
 
-  triggerFileInput() {
-    this.fileInput.nativeElement.click();
+  // Form validation helpers
+  isFieldInvalid(fieldName: string): boolean {
+    const field = this.serviceForm.get(fieldName);
+    return field ? field.invalid && (field.dirty || field.touched) : false;
   }
 }

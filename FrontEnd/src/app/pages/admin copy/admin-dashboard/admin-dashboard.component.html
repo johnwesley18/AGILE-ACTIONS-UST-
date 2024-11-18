@@ -3,7 +3,6 @@
   <div class="w-64 bg-gray-800 text-white">
     <div class="p-6 flex flex-col items-center">
         <div class="flex items-center justify-between w-full h-10">
-            <img src="assets/admin-profile.jpg" alt="Admin Profile Picture" class="size-8 rounded-full" />
             <span class="text-lg font-bold">Admin Dashboard</span>
         </div>
       <p class="text-gray-400 my-6">System Administrator</p>
@@ -20,12 +19,26 @@
           <mat-icon class="mr-3">supervisor_account</mat-icon>
           <span>Service Agents</span>
         </a>
+        <a routerLink="/admin/review" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+            <mat-icon class="mr-3">rate_review</mat-icon>
+          <span>Review</span>
+        </a>
         <a routerLink="/admin/refunds" 
            routerLinkActive="bg-gray-700" 
            class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
           <mat-icon class="mr-3">monetization_on</mat-icon>
           <span>Refunds</span>
         </a>
+        
+        <a routerLink="/admin/raise" 
+           routerLinkActive="bg-gray-700" 
+           class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">
+              <mat-icon class="mr-3">assignment</mat-icon>         
+         <span>Raised Tickets</span>
+        </a>
+        
         <a routerLink="/admin/rework-requests" 
            routerLinkActive="bg-gray-700" 
            class="flex items-center px-4 py-3 hover:bg-gray-700 rounded-lg mb-2">

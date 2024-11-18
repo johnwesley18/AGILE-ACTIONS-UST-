@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
+@CrossOrigin("http://localhost:4200")
 public class ReviewingController {
     @Autowired
     private ReviewingService reviewingService;
@@ -23,4 +24,10 @@ public class ReviewingController {
     public List<Review> getProviderReviews(@PathVariable Long providerId) {
         return reviewingService.getReviewsByProvider(providerId);
     }
+    
+    @GetMapping("/getAllReview")
+    public List<Review> getAllReview() {
+        return reviewingService.getAll();
+    }
+    
 }

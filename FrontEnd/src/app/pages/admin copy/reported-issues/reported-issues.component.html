@@ -1,0 +1,53 @@
+<div class="rework-requests-container">
+  <h2>Reported Issues Management</h2>
+
+  <!-- Request List -->
+  <div class="requests-list" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Service ID</th>
+          <th>Service Description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of reworkRequests" (click)="openEditModal(request)">
+          <td>{{ request.userId }}</td>
+          <td>{{ request.serviceId }}</td>
+          <td class="description-cell">{{ request.serviceDesc }}</td>
+          <td>{{ request.action }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-spinner" *ngIf="loading">
+    <p>Loading...</p>
+  </div>
+</div>
+
+<!-- Edit Action Modal -->
+<div class="modal" *ngIf="showEditModal">
+  <div class="edit-refund-modal">
+    <h3>Edit Rework Request</h3>
+    <p><strong>User ID:</strong> {{ selectedRequest?.userId }}</p>
+    <p><strong>Service ID:</strong> {{ selectedRequest?.serviceId }}</p>
+    <p><strong>Service Description:</strong> {{ selectedRequest?.serviceDesc }}</p>
+    <div>
+      <label for="editAction">New Action:</label>
+      <input
+        id="editAction"
+        [(ngModel)]="newAction"
+        type="text"
+        placeholder="Enter new action"
+      />
+    </div>
+    <div class="modal-actions">
+      <button (click)="updateAction()" class="edit-refund-btn">Save</button>
+      <button (click)="closeEditModal()" class="edit-refund-btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>

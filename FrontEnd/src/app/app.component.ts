@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'AgileActions';
   constructor(private router: Router) {}
   isAdminRoute(): boolean {
-    const adminRoutes = ['/admin', '/admin/dashboard', '/admin/login', '/admin/service-agents', '/admin/rework-requests', '/admin/refunds', '/admin/reported-issues', '/admin/service-listing'];
+    const adminRoutes = ['/admin', '/admin/dashboard','/admin/raise','/admin/login', '/admin/review', '/admin/service-agents', '/admin/rework-requests', '/admin/refunds', '/admin/reported-issues', '/admin/service-listing'];
     return adminRoutes.includes(this.router.url);
   }
 }

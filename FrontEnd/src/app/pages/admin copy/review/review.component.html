@@ -1,0 +1,21 @@
+<!-- src/app/components/review/review.component.html -->
+<div *ngIf="isLoading" class="text-center">
+    <p>Loading reviews...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && reviews.length === 0" class="text-center">
+    <p>No reviews available.</p>
+  </div>
+  
+  <div *ngIf="!isLoading && reviews.length > 0" class="review-list">
+    <div *ngFor="let review of reviews" class="review-card">
+      <h3>Review #{{ review.id }}</h3>
+      <p><strong>User ID:</strong> {{ review.userId }}</p>
+      <p><strong>Provider ID:</strong> {{ review.providerId }}</p>
+      <p><strong>Rating:</strong> {{ review.rating }}</p>
+      <p><strong>Review Text:</strong> {{ review.reviewText || 'No review text provided' }}</p>
+      <p><strong>Reported:</strong> {{ review.reported ? 'Yes' : 'No' }}</p>
+      <p><strong>Timestamp:</strong> {{ review.timestamp || 'No timestamp available' }}</p>
+    </div>
+  </div>
+  
